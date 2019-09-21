@@ -83,9 +83,10 @@ public class Downloader {
              file = new File(hashTagDir, destName);
              logger.info("Image for hashtag {} - {}", hashtag, fileName);
              if(!file.exists()) {
-                 logger.info(file.getName());
-
+                 logger.info("New: {}", file.getName());
                  FileUtils.copyURLToFile(url, file);
+             } else {
+                 logger.debug("Already downloaded: {}", file.getName());
              }
          }
 
