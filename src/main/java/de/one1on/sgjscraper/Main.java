@@ -32,7 +32,7 @@ public class Main {
 
         final String hashtag_subscribe = dotenv.get("HASHTAG_SUBSCRIBE", "");
         if(!hashtag_subscribe.isEmpty()) {
-            api.subscribeHashtag("closeup");
+            api.subscribeHashtag(hashtag_subscribe);
         }
 
         final ScrapeExecutor scrapeExecutor = new ScrapeExecutor();
