@@ -1,9 +1,13 @@
 package de.one1on.sgjscraper.core;
 
 
+import de.one1on.sgjscraper.Main;
 import de.one1on.sgjscraper.api.SecretGermanJodelAPI;
 import de.one1on.sgjscraper.model.Comment;
 import de.one1on.sgjscraper.model.Jodel;
+import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.*;
@@ -16,11 +20,13 @@ import static de.one1on.sgjscraper.util.CompletableFutureCollector.collectResult
 
 
 public abstract class BaseScrapingTask implements Runnable, ScrapingTaskLifecycle {
+    public static Logger logger = LoggerFactory.getLogger(Main.class);
     protected static Predicate<Jodel> isFemale = (jodel -> jodel.getAuthor().getGenderId().equals(1));
     protected static Predicate<Comment> isFemaleComment = (comment -> comment.getAuthor().getGenderId().equals(1));
     protected static Predicate<Jodel> hasImage = (jodel -> !jodel.getImage().isEmpty());
     protected static Predicate<Comment> hasImageComment = (comment -> !comment.getImage().isEmpty());
     private static Function<Jodel, String> extractHashTag = jodel -> HashTagExtractor.extract(jodel.getResolvedComments().stream().map(Comment::getText).collect(Collectors.toList()));
+    @Getter
     private final List<CompletableFuture<File>> downloads = new ArrayList<>();
 
     protected SecretGermanJodelAPI api;
@@ -34,10 +40,16 @@ public abstract class BaseScrapingTask implements Runnable, ScrapingTaskLifecycl
     }
 
     @SafeVarargs
-    protected static Map<String, List<Jodel>> filter(List<Jodel> list, Predicate<Jodel>... predicates) {
+    protected static List<Jodel> filter(List<Jodel> list, Predicate<Jodel>... predicates) {
         return list.stream()
-                        .filter(Arrays.stream(predicates).reduce(x -> true, Predicate::and))
-                        .collect(Collectors.groupingBy(extractHashTag));
+                   .filter(Arrays.stream(predicates).reduce($ -> true, Predicate::and))
+                   .collect(Collectors.toList());
+    }
+
+    @SafeVarargs
+    protected static Map<String, List<Jodel>> filterAndGroup(List<Jodel> list, Predicate<Jodel>... predicates) {
+        return filter(list, predicates).stream()
+                                       .collect(Collectors.groupingBy(extractHashTag));
     }
 
     @SafeVarargs
@@ -53,18 +65,18 @@ public abstract class BaseScrapingTask implements Runnable, ScrapingTaskLifecycl
 
     @Override
     public void pre() {
-        System.out.println("Pre scraping..");
+        logger.info("Pre scraping..");
     }
 
     @Override
     public void scrape() {
-        System.out.println("Scraping..");
+        logger.info("Scraping..");
     }
 
     @Override
     public void process() {
         final CompletableFuture<List<File>> downloadStage = downloads.stream().collect(collectResult());
-        downloadStage.thenAccept((d) -> System.out.println("Completed " + d.size() + " downloads.")).exceptionally(e -> {
+        downloadStage.thenAccept((d) -> logger.info("Completed {} downloads.", d.size())).exceptionally(e -> {
             System.out.println(e.getCause()); // returns a throwable back
             return null;
         });
@@ -74,6 +86,6 @@ public abstract class BaseScrapingTask implements Runnable, ScrapingTaskLifecycl
 
     @Override
     public void post() {
-        System.out.println("Post scraping..");
+        logger.info("Post scraping..");
     }
 }

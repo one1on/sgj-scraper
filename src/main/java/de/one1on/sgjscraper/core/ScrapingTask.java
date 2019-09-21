@@ -28,7 +28,7 @@ public class ScrapingTask extends BaseScrapingTask {
             jodel.setResolvedComments(comments);
         }
 
-        final Map<String, List<Jodel>> filteredJodels = filter(jodelList, isFemale, hasImage);
+        final Map<String, List<Jodel>> filteredJodels = filterAndGroup(jodelList, isFemale, hasImage);
 
         for (Map.Entry<String, List<Jodel>> entry : filteredJodels.entrySet()) {
             List<String> imageUrls = entry.getValue().stream()
