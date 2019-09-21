@@ -23,14 +23,16 @@ public class ScrapingTask extends BaseScrapingTask {
     public void scrape() {
         List<Jodel> jodelList = api.getPosts(0, 0);
 
-        for (Jodel jodel : jodelList) {
+        final List<Jodel> filteredJodels = filter(jodelList, isFemale, hasImage);
+
+        for (Jodel jodel : filteredJodels) {
             final List<Comment> comments = api.getPostComments(jodel.getId());
             jodel.setResolvedComments(comments);
         }
 
-        final Map<String, List<Jodel>> filteredJodels = filterAndGroup(jodelList, isFemale, hasImage);
+        final Map<String, List<Jodel>> filterAndGrouped = filterAndGroup(filteredJodels);
 
-        for (Map.Entry<String, List<Jodel>> entry : filteredJodels.entrySet()) {
+        for (Map.Entry<String, List<Jodel>> entry : filterAndGrouped.entrySet()) {
             List<String> imageUrls = entry.getValue().stream()
                                           .flatMap(s -> Stream.concat(Stream.of(s.getImage()), filterComments(s.getResolvedComments()).stream().skip(1).map(Comment::getImage)))
                                           .collect(Collectors.toList());
