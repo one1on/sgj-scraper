@@ -21,9 +21,11 @@ dependencies {
     compile 'org.apache.httpcomponents:httpclient:4.5.10'
     implementation 'com.google.code.gson:gson:2.8.5'
     compile "org.slf4j:slf4j-api:1.7.28"
+    testCompile 'org.junit.vintage:junit-vintage-engine:5.4.2'
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.4.2')
     testRuntime('org.junit.jupiter:junit-jupiter-engine:5.4.2')
     testImplementation('org.assertj:assertj-core:3.13.2')
+    testCompile 'org.mockito:mockito-junit-jupiter:2.23.0'
     compile 'ch.qos.logback:logback-classic:1.2.3'
     testCompile 'ch.qos.logback:logback-classic:1.2.3'
 }
