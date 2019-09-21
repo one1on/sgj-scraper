@@ -4,6 +4,7 @@ import de.one1on.sgjscraper.api.SecretGermanJodelAPI;
 import de.one1on.sgjscraper.api.SecretGermanJodelAPIImpl;
 import de.one1on.sgjscraper.core.NotificationsScrapingTask;
 import de.one1on.sgjscraper.core.ScrapeExecutor;
+import de.one1on.sgjscraper.core.ScrapeExecutorFactory;
 import de.one1on.sgjscraper.core.ScrapingTask;
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -35,9 +36,12 @@ public class Main {
             api.subscribeHashtag(hashtag_subscribe);
         }
 
-        final ScrapeExecutor scrapeExecutor = new ScrapeExecutor();
+        final ScrapeExecutor scrapeExecutor = ScrapeExecutorFactory.INSTANCE.scrapeExecutor();
         scrapeExecutor.addTask(new ScrapingTask(api));
-        scrapeExecutor.addTask(new NotificationsScrapingTask(api));
         scrapeExecutor.execute();
+
+        final ScrapeExecutor slowScrapeExecutor = ScrapeExecutorFactory.INSTANCE.slowScrapeExecutor();
+        slowScrapeExecutor.addTask(new NotificationsScrapingTask(api));
+        slowScrapeExecutor.execute();
     }
 }
