@@ -23,7 +23,10 @@ public class Downloader {
     private File baseDir;
 
     public Downloader(List<String> hashtags, List<String> urls) {
-        this.hashtags = hashtags;
+        if(hashtags.isEmpty()) {
+            hashtags.add("#none");
+        }
+        this.hashtags = hashtags.stream().map(h -> h.replace("#", "hashtag_")).collect(Collectors.toList());
         this.urls = urls;
         initBaseDir();
     }
@@ -73,9 +76,6 @@ public class Downloader {
         String destName = "figure-" + fileName.hashCode() + ".jpg";
 
          File file = null;
-         if(hashtags.isEmpty()) {
-             hashtags.add("#none");
-         }
 
          for (String hashtag : hashtags) {
              final File hashTagDir = new File(baseDir, hashtag);
