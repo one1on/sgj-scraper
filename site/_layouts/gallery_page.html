@@ -19,39 +19,31 @@ layout: full-width
 <h1><a href="/{{ site.gallery.dir }}">{{ page.title }}</a></h1>
 <hr />
 
-<div class="slider lazy">
+
+<div class="gallery">
     {% for image in page.images %}
-    <div>
-        <div class="slide">
-            <img data-lazy="{{ image.name }}"/>
-        </div>
-    </div>
+    <a href="{{ image.name }}">
+        <img src="thumbs/{{ image.name }}"/>
+    </a>
     {% endfor %}
 </div>
 
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="https://rawcdn.githack.com/sachinchoolur/lightGallery/e97c22921b74b818843677bdb25de2b9b220e228/dist/css/lightgallery.min.css"/>
 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<!-- A jQuery plugin that adds cross-browser mouse wheel support. (Optional) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/lightgallery,npm/lg-autoplay,npm/lg-fullscreen,npm/lg-hash,npm/lg-pager,npm/lg-thumbnail,npm/lg-zoom"></script>
 <script>
     $(document).ready(function () {
-        $('.slider').slick({
-            variableWidth: true,
-            lazyLoad: 'progressive',
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            centerMode: true,
-            centerPadding: '40px',
+        $('.gallery').lightGallery({
+            thumbnail:true,
+            speed: 50,
+            height: '100%',
             autoplay: true,
-            autoplaySpeed: 2000,
-            dots: true,
-            infinite: true,
-            speed: 500,
-            arrows: true,
-            pauseOnFocus: false,
-            pauseOnHover: true,
-        })
+            pause: 4200
+        });
     })
 </script>
