@@ -28,14 +28,18 @@ layout: full-width
     {% endfor %}
 </div>
 
-<link rel="stylesheet" type="text/css" href="https://rawcdn.githack.com/sachinchoolur/lightGallery/e97c22921b74b818843677bdb25de2b9b220e228/dist/css/lightgallery.min.css"/>
+<link rel="stylesheet" type="text/css" href="{{'/node_modules/lightgallery/dist/css/lightgallery.min.css' }}"/>
 
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="{{'/node_modules/jquery/dist/jquery.min.js' }}"></script>
+<script src="{{'/node_modules/lightgallery/dist/js/lightgallery.min.js' }}"></script>
+<script src="{{'/node_modules/lg-thumbnail/dist/lg-thumbnail.min.js' }}"></script>
+<script src="{{'/node_modules/lg-autoplay/dist/lg-autoplay.min.js' }}"></script>
+<script src="{{'/node_modules/lg-fullscreen/dist/lg-fullscreen.min.js' }}"></script>
+<script src="{{'/node_modules/lg-pager/dist/lg-pager.min.js' }}"></script>
+<script src="{{'/node_modules/lg-zoom/dist/lg-zoom.min.js' }}"></script>
+<script src="{{'/node_modules/lg-hash/dist/lg-hash.min.js' }}"></script>
 
-<!-- A jQuery plugin that adds cross-browser mouse wheel support. (Optional) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/lightgallery,npm/lg-autoplay,npm/lg-fullscreen,npm/lg-hash,npm/lg-pager,npm/lg-thumbnail,npm/lg-zoom"></script>
+
 <script>
     $(document).ready(function () {
         $('.gallery').lightGallery({
