@@ -1,39 +1,57 @@
 ---
-layout: page
+layout: full-width
 ---
 <style TYPE="text/css">
-    .gallery-image-wrapper {
-        height: 300px;
-        width: 300px;
-        display: inline-block;
-        margin: 1em;
-        position: relative;
+    .slider {
+        background: #f4f4f4;
     }
-    .gallery-image {
-        margin: auto;
-        position: absolute;
-        top: 0px;
-        bottom: 0px;
-        max-height: 100%;
-        max-width: 100%;
+
+    .slide {
+        width: 400px;
     }
+
+    .slide img {
+        border: 5px solid #fff;
+    }
+
 </style>
+
 <h1><a href="/{{ site.gallery.dir }}">{{ page.title }}</a></h1>
 <hr />
-{% for image in page.images %}
-<div class="gallery-image-wrapper">
-    <a name="{{ image.name }}"></a>
-    <a href="{{ image.name }}"{% if site.gallery.lightbox %} rel="lightbox[{{ page.gallery }}]"{% endif %}>
-        <img class="gallery-image" src="thumbs/{{ image.name }}" />
-    </a>
+
+<div class="slider lazy">
+    {% for image in page.images %}
+    <div>
+        <div class="slide">
+            <img data-lazy="{{ image.name }}"/>
+        </div>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.min.css" />
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
-    lightbox.option({
-        'fadeDuration': 5,
-        'resizeDuration': 5,
-        'wrapAround': true
+    $(document).ready(function () {
+        $('.slider').slick({
+            variableWidth: true,
+            lazyLoad: 'progressive',
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            centerMode: true,
+            centerPadding: '40px',
+            autoplay: true,
+            autoplaySpeed: 2000,
+            dots: true,
+            infinite: true,
+            speed: 500,
+            arrows: true,
+            pauseOnFocus: false,
+            pauseOnHover: true,
+        })
     })
 </script>
