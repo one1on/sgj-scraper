@@ -2,6 +2,8 @@ FROM ruby:2.5-alpine as jekyll-base
 
 RUN apk add --no-cache build-base gcc bash cmake git
 
+#RUN gem update --system
+
 RUN gem install jekyll
 
 EXPOSE 4000
