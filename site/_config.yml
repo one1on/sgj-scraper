@@ -43,6 +43,12 @@ exclude:
    - vendor/cache/
    - vendor/gems/
    - vendor/ruby/
+   - Dockerfile
+   - docker-entrypoint.sh
+   - docker-compose.yml
+   - package.json
+   - package-lock.json
+keep_files: [node_modules]
 
 gallery:
   dir: photos               # Path to the gallery
