@@ -13,22 +13,17 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Your awesome title
-email: your-email@example.com
+title: SGJ Scraper
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Image viewer for scraped files from SGJ.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+github_username:  one1on
 
 # Build settings
 markdown: kramdown
 theme: minima
 plugins:
-  - jekyll-feed
   - jekyll-gallery-generator
 
 # Exclude from processing.
@@ -50,12 +45,11 @@ gallery:
   title_prefix: "Photos: "  # Title prefix for gallery pages. Gallery title = title_prefix + gallery_name
   sort_field: "date_time"   # How to sort galleries on the index page.
   # Possible values are: title, date_time, best_image
-  lightbox: true
   thumbnail_size:
-    x: 1000                  # max width of thumbnails (in pixels)
-    y: 1000                  # max height of thumbnails (in pixels)
+    x: 600                  # max width of thumbnails (in pixels)
+    y: 600                  # max height of thumbnails (in pixels)
   # The following options are for individual galleries.
   galleries:
-    with_info:
+    none:
       info:
         desc: "Gallery Description" # Info fields can be used in custom templates.
