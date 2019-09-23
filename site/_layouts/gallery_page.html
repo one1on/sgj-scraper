@@ -1,5 +1,5 @@
 ---
-layout: full-width
+layout: gallery_base
 ---
 <style TYPE="text/css">
 </style>
@@ -9,32 +9,10 @@ layout: full-width
 
 <div class="gallery">
     {% for image in page.images %}
-    <a href="{{ image.name }}">
+    <a class="gallery-item" href="{{ image.name }}">
         <img src="thumbs/{{ image.name }}"/>
     </a>
     {% endfor %}
 </div>
 
-<link rel="stylesheet" type="text/css" href="{{'/node_modules/lightgallery/dist/css/lightgallery.min.css' }}"/>
-
-<script src="{{'/node_modules/jquery/dist/jquery.min.js' }}"></script>
-<script src="{{'/node_modules/lightgallery/dist/js/lightgallery.min.js' }}"></script>
-<script src="{{'/node_modules/lg-thumbnail/dist/lg-thumbnail.min.js' }}"></script>
-<script src="{{'/node_modules/lg-autoplay/dist/lg-autoplay.min.js' }}"></script>
-<script src="{{'/node_modules/lg-fullscreen/dist/lg-fullscreen.min.js' }}"></script>
-<script src="{{'/node_modules/lg-pager/dist/lg-pager.min.js' }}"></script>
-<script src="{{'/node_modules/lg-zoom/dist/lg-zoom.min.js' }}"></script>
-<script src="{{'/node_modules/lg-hash/dist/lg-hash.min.js' }}"></script>
-
-
-<script>
-    $(document).ready(function () {
-        $('.gallery').lightGallery({
-            thumbnail:true,
-            speed: 50,
-            height: '100%',
-            autoplay: true,
-            pause: 4200
-        });
-    })
-</script>
+{{ content }}
