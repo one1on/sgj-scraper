@@ -3,96 +3,46 @@ package de.one1on.sgjscraper.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import lombok.Data;
 
+@Data
 public class Author {
-
     @SerializedName("location")
     @Expose
     private String location;
     @SerializedName("gender_id")
     @Expose
-    private Integer genderId;
+    private Gender genderId = Gender.MALE;
+    public enum Gender {
+        @SerializedName("1")
+        FEMALE,
+        @SerializedName("2")
+        MALE
+    }
     @SerializedName("verified")
     @Expose
-    private Integer verified;
+    private boolean verified;
     @SerializedName("donator")
     @Expose
-    private Integer donator;
+    private boolean donator;
     @SerializedName("premium")
     @Expose
-    private Integer premium;
+    private boolean premium;
     @SerializedName("user_author")
     @Expose
-    private Integer userAuthor;
+    private int userAuthor;
     @SerializedName("user_adminflag")
     @Expose
-    private Integer userAdminflag;
+    private boolean userAdminflag;
     @SerializedName("user_messages")
     @Expose
     private UserMessages userMessages;
 
-    public String getLocation() {
-        return location;
+    public boolean isMale() {
+        return genderId.equals(Gender.MALE);
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public boolean isFemale() {
+        return genderId.equals(Gender.FEMALE);
     }
-
-    public Integer getGenderId() {
-        return genderId;
-    }
-
-    public void setGenderId(Integer genderId) {
-        this.genderId = genderId;
-    }
-
-    public Integer getVerified() {
-        return verified;
-    }
-
-    public void setVerified(Integer verified) {
-        this.verified = verified;
-    }
-
-    public Integer getDonator() {
-        return donator;
-    }
-
-    public void setDonator(Integer donator) {
-        this.donator = donator;
-    }
-
-    public Integer getPremium() {
-        return premium;
-    }
-
-    public void setPremium(Integer premium) {
-        this.premium = premium;
-    }
-
-    public Integer getUserAuthor() {
-        return userAuthor;
-    }
-
-    public void setUserAuthor(Integer userAuthor) {
-        this.userAuthor = userAuthor;
-    }
-
-    public Integer getUserAdminflag() {
-        return userAdminflag;
-    }
-
-    public void setUserAdminflag(Integer userAdminflag) {
-        this.userAdminflag = userAdminflag;
-    }
-
-    public UserMessages getUserMessages() {
-        return userMessages;
-    }
-
-    public void setUserMessages(UserMessages userMessages) {
-        this.userMessages = userMessages;
-    }
-
 }

@@ -21,8 +21,8 @@ import static de.one1on.sgjscraper.util.CompletableFutureCollector.collectResult
 
 public abstract class BaseScrapingTask implements Runnable, ScrapingTaskLifecycle {
     public static Logger logger = LoggerFactory.getLogger(Main.class);
-    protected static Predicate<Jodel> isFemale = (jodel -> jodel.getAuthor().getGenderId().equals(1));
-    protected static Predicate<Comment> isFemaleComment = (comment -> comment.getAuthor().getGenderId().equals(1));
+    protected static Predicate<Jodel> isFemale = (jodel -> jodel.getAuthor().isFemale());
+    protected static Predicate<Comment> isFemaleComment = (comment -> comment.getAuthor().isFemale());
     protected static Predicate<Jodel> hasImage = (jodel -> !jodel.getImage().isEmpty());
     protected static Predicate<Comment> hasImageComment = (comment -> !comment.getImage().isEmpty());
     private static Function<Jodel, String> extractHashTag = jodel -> HashTagExtractor.extract(jodel.getResolvedComments().stream().map(Comment::getText).collect(Collectors.toList()));

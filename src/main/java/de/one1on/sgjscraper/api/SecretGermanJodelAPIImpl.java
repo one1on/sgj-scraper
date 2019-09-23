@@ -3,6 +3,8 @@ package de.one1on.sgjscraper.api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
+import de.one1on.sgjscraper.api.gson.BooleanTypeAdapter;
+import de.one1on.sgjscraper.api.gson.DateTypeAdapter;
 import de.one1on.sgjscraper.model.Comment;
 import de.one1on.sgjscraper.model.Jodel;
 import de.one1on.sgjscraper.model.Notification;
@@ -13,6 +15,7 @@ import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.util.EntityUtils;
+import org.joda.time.DateTime;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -26,7 +29,9 @@ public class SecretGermanJodelAPIImpl implements SecretGermanJodelAPI {
     private final HttpRequestInterceptor delayInterceptor;
     private HttpClient client;
     private final BasicCookieStore cookieStore;
-    final Gson gson = new GsonBuilder().disableHtmlEscaping()
+    final Gson gson = new GsonBuilder().registerTypeAdapter(boolean.class, new BooleanTypeAdapter())
+                                       .registerTypeAdapter(DateTime.class, new DateTypeAdapter())
+                                       .disableHtmlEscaping()
                                        .create();
 
     public SecretGermanJodelAPIImpl(String token) {
@@ -35,7 +40,6 @@ public class SecretGermanJodelAPIImpl implements SecretGermanJodelAPI {
         cookie.setDomain("secretgermanjodel.com");
         cookie.setPath("/");
         cookieStore.addCookie(cookie);
-
         delayInterceptor = new DelayRequestInterceptor();
         client = HttpClientBuilder.create()
                                   .disableDefaultUserAgent()

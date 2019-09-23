@@ -4,6 +4,7 @@ package de.one1on.sgjscraper.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
+import org.joda.time.DateTime;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class Jodel {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private int id;
     @SerializedName("image")
     @Expose
     private String image;
@@ -27,13 +28,13 @@ public class Jodel {
     private String text;
     @SerializedName("timestamp")
     @Expose
-    private Integer timestamp;
+    private DateTime timestamp;
     @SerializedName("color")
     @Expose
     private Color color;
     @SerializedName("comments")
     @Expose
-    private Integer comments;
+    private int comments;
     @SerializedName("votes")
     @Expose
     private Votes votes;
@@ -42,13 +43,13 @@ public class Jodel {
     private Author author;
     @SerializedName("status")
     @Expose
-    private Integer status;
+    private int status;
     @SerializedName("pinned")
     @Expose
-    private Integer pinned;
+    private int pinned;
     @SerializedName("report")
     @Expose
-    private Integer report;
+    private int report;
     private List<Comment> resolvedComments;
 
 }
