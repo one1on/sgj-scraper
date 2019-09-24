@@ -1,0 +1,18 @@
+---
+layout: gallery_base
+---
+<style TYPE="text/css">
+</style>
+
+<h1><a href="/{{ site.gallery.dir }}">{{ page.title }}</a></h1>
+<hr />
+
+<div class="gallery">
+    {% for image in page.images %}
+    <a class="gallery-item" href="{{ image.name }}">
+        <img src="thumbs/{{ image.name }}"/>
+    </a>
+    {% endfor %}
+</div>
+
+{{ content }}

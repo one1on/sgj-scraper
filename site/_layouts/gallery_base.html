@@ -1,0 +1,33 @@
+---
+layout: full-width
+---
+<style TYPE="text/css">
+</style>
+
+<link rel="stylesheet" type="text/css" href="{{'/node_modules/lightgallery/dist/css/lightgallery.min.css' }}"/>
+
+<script src="{{'/node_modules/jquery/dist/jquery.min.js' }}"></script>
+<script src="{{'/node_modules/jquery-mousewheel/jquery.mousewheel.js' }}"></script>
+<script src="{{'/node_modules/lightgallery/dist/js/lightgallery.min.js' }}"></script>
+<script src="{{'/node_modules/lg-thumbnail/dist/lg-thumbnail.min.js' }}"></script>
+<script src="{{'/node_modules/lg-autoplay/dist/lg-autoplay.min.js' }}"></script>
+<script src="{{'/node_modules/lg-fullscreen/dist/lg-fullscreen.min.js' }}"></script>
+<script src="{{'/node_modules/lg-pager/dist/lg-pager.min.js' }}"></script>
+<script src="{{'/node_modules/lg-zoom/dist/lg-zoom.min.js' }}"></script>
+<script src="{{'/node_modules/lg-hash/dist/lg-hash.min.js' }}"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.gallery').lightGallery({
+            selector: '.gallery-item',
+            thumbnail:true,
+            speed: 50,
+            height: '100%',
+            autoplay: true,
+            pause: 4200
+        });
+    })
+</script>
+
+{{ content }}

@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  jekyll:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/site
+      - ../build/images:/site/photos
+    ports:
+      - '8000:4000'
