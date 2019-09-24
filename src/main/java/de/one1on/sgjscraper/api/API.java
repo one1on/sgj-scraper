@@ -20,12 +20,12 @@ public class API {
                              .build();
     }
 
-    public HttpUriRequest getPost(long id) {
+    public HttpUriRequest getPost(long id, long lastId) {
         return RequestBuilder.post()
                              .setUri(BASE_API_URI + "/comments/get")
                              .addParameter("id", String.valueOf(id))
                              .addParameter("direction", String.valueOf(1))
-                             .addParameter("last_id", String.valueOf(0))
+                             .addParameter("last_id", String.valueOf(lastId))
                              .addParameter("comment_id", String.valueOf(0))
                              .addParameter("jodel_needed", String.valueOf(1))
                              .addParameter("notification_id", String.valueOf(0))

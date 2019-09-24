@@ -1,7 +1,10 @@
 package de.one1on.sgjscraper.api;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import de.one1on.sgjscraper.api.gson.BooleanTypeAdapter;
 import de.one1on.sgjscraper.api.gson.DateTypeAdapter;
@@ -67,7 +70,7 @@ public class SecretGermanJodelAPIImpl implements SecretGermanJodelAPI {
     @Override
     public List<Jodel> getPost(long id) {
         try {
-            final HttpResponse response = client.execute(API.getPost(id));
+            final HttpResponse response = client.execute(API.getPost(id, 0));
             String json = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
             List<Jodel> list = Stream.of(new JsonParser().parse(json).getAsJsonObject()
                                                            .getAsJsonObject("results")
@@ -83,13 +86,26 @@ public class SecretGermanJodelAPIImpl implements SecretGermanJodelAPI {
     @Override
     public List<Comment> getPostComments(long id) {
         try {
-            final HttpResponse response = client.execute(API.getPost(id));
-            String json = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
-            List<Comment> list = Stream.of(new JsonParser().parse(json).getAsJsonObject()
-                                                                .getAsJsonObject("results")
-                                                                .getAsJsonArray("comments"))
-                                            .flatMap(e -> Stream.of(gson.fromJson(e, Comment[].class)))
-                                            .collect(Collectors.toList());
+            boolean allLoaded = false;
+            int lastId = 0;
+            List<Comment> list = Lists.newArrayList();
+            // Number reloads r. resolved comments = r * 30 comments
+            int leftReloads = 3;
+            while(!allLoaded && leftReloads >= 0) {
+                final HttpResponse response = client.execute(API.getPost(id, lastId));
+                final String json = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+
+                final JsonObject results = new JsonParser().parse(json)
+                                                           .getAsJsonObject()
+                                                           .getAsJsonObject("results");
+                allLoaded = this.gson.fromJson(results.get("all_loaded"), boolean.class);
+                Stream.of(results.getAsJsonArray("comments"))
+                             .flatMap(e -> Stream.of(gson.fromJson(e, Comment[].class)))
+                             .forEachOrdered(list::add);
+                lastId = Iterables.getLast(list).getId();
+                leftReloads--;
+            }
+
             return list;
         } catch (IOException e) {
             throw new IllegalStateException(e);
