@@ -49,7 +49,7 @@ docker-compose up
 The scraped images are displayed and grouped by their directories. 
 In this example there is a directory `france` with 2 images and a directory `none` with 3 images.
 
-[![this screenshot](/assets/images/1_tn.jpg)](/assets/images/1.PNG)
+[![this screenshot]({{ '/assets/images/1_tn.jpg' | relative_url }})]({{ '/assets/images/1.PNG' | relative_url }})
 
 By clicking on a image you get a slideshow for all images.
 By clicking on the link you get the view for a single gallery.
@@ -57,11 +57,11 @@ By clicking on the link you get the view for a single gallery.
 ### Slideshow
 The slideshow allows to view all images easily.
 
-[![this screenshot](/assets/images/2_tn.jpg)](/assets/images/2.PNG)
+[![this screenshot]({{ '/assets/images/2_tn.jpg' | relative_url }})]({{ '/assets/images/2.PNG' | relative_url }})
 
 ### Single Gallery
 All images of this gallery are listed.
 By clicking on a image you get a slideshow for the images.
 
-[![this screenshot](/assets/images/3_tn.jpg)](/assets/images/3.PNG)
+[![this screenshot]({{ '/assets/images/3_tn.jpg' | relative_url }})]({{ '/assets/images/3.PNG' | relative_url }})
 
