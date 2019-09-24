@@ -24,6 +24,8 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
+repository: one1on/sgjscraper
+
 # Build settings
 markdown: kramdown
 theme: jekyll-theme-cayman
