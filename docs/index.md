@@ -35,7 +35,7 @@ Examples:
 
 ## Gallery
 
-The project contains a basic gallery viewer based on jekyll (static page generator). The stored images are analysed and a simple website is generated for them.
+The project contains of a basic gallery viewer based on jekyll (static page generator). The stored images are analysed and a simple website is generated for them.
 
 The viewer is located in the `site` directory.
 To get started run 
@@ -46,12 +46,12 @@ docker-compose up
 ```
 
 ### Galleries Overview
-The scraped images are displayed as grouped by their directories. 
-In this example the is a directory `france` with 2 images and a directory `none` with 3 images.
+The scraped images are displayed and grouped by their directories. 
+In this example there is a directory `france` with 2 images and a directory `none` with 3 images.
 
 [![this screenshot](/assets/images/1_tn.jpg)](/assets/images/1.PNG)
 
-By clicking on the image you get a slideshow for all images.
+By clicking on a image you get a slideshow for all images.
 By clicking on the link you get the view for a single gallery.
 
 ### Slideshow
@@ -61,7 +61,7 @@ The slideshow allows to view all images easily.
 
 ### Single Gallery
 All images of this gallery are listed.
-By clicking on the image you get a slideshow for the images.
+By clicking on a image you get a slideshow for the images.
 
 [![this screenshot](/assets/images/3_tn.jpg)](/assets/images/3.PNG)
 
