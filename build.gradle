@@ -1,11 +1,16 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'de.one1on'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+
+application {
+    mainClassName = 'de.one1on.sgjscraper.Main'
+}
 
 repositories {
     mavenCentral()

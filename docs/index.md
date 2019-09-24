@@ -2,13 +2,14 @@
 
 ## Usage
 The project consists of a scraper written in Java and a view for the images based on jekll with docker.
-
+Clone the project:
 ```
 git clone https://github.com/one1on/sgj-scraper
 ```
-(TODO: add a gradle task)
-
-Import the gradle project into IntelliJ and execute the Main.
+Run the scraper:
+```
+gradlew run
+```
 
 ## Requirements
 Scraper:
@@ -19,7 +20,7 @@ Viewer:
 - npm 
 - docker
 
-## Scraping
+## Scraping Process
 The scraping process does download all images for
 1. Notifications for your subscribed hashtags
 2. Feed entries
