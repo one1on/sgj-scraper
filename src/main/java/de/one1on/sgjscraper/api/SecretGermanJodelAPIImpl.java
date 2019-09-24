@@ -1,7 +1,7 @@
 package de.one1on.sgjscraper.api;
 
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Streams;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -102,7 +102,7 @@ public class SecretGermanJodelAPIImpl implements SecretGermanJodelAPI {
                 Stream.of(results.getAsJsonArray("comments"))
                              .flatMap(e -> Stream.of(gson.fromJson(e, Comment[].class)))
                              .forEachOrdered(list::add);
-                lastId = Iterables.getLast(list).getId();
+                lastId = Streams.findLast(list.stream()).map(Comment::getId).orElse(0);
                 leftReloads--;
             }
 
