@@ -6,7 +6,8 @@ plugins {
 group 'de.one1on'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 application {
     mainClassName = 'de.one1on.sgjscraper.Main'
