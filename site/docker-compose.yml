@@ -8,5 +8,8 @@ services:
     volumes:
       - .:/site
       - ../build/images:/site/photos
+      - bundlervol:/box
     ports:
       - '8000:4000'
+volumes:
+  bundlervol:

@@ -14,6 +14,6 @@ if [ ! -f Gemfile ]; then
   exit 1
 fi
 
-bundle install
+bundle check || bundle install
 
 exec "$@"

@@ -25,6 +25,9 @@ FROM jekyll-base
 
 # create new site by setting -e JEKYLL_NEW=true
 ENV JEKYLL_NEW false
+ENV JEKYLL_ENV development
+
+ENV BUNDLE_PATH /box
 
 COPY docker-entrypoint.sh /usr/local/bin/
 
