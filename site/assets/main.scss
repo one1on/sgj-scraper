@@ -2,6 +2,9 @@
 ---
 @import "{{ site.theme }}";
 
+@import 'foundation-sites/scss/foundation';
+@include foundation-xy-grid-classes;
+
 @import url('//fonts.googleapis.com/css?family=Pacifico:400,700');
 
 html, body {

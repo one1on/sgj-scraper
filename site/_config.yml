@@ -48,6 +48,8 @@ exclude:
    - docker-compose.yml
    - package.json
    - package-lock.json
+   # foundation-sites/docs contain files with liquid templates that result in pages
+   - /node_modules/foundation-sites/docs
 keep_files: [node_modules]
 
 gallery:
