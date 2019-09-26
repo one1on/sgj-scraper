@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+npm i
+
 if [ ! -f Gemfile ]; then
   echo "NOTE: hmm, I don't see a Gemfile so I don't think there's a jekyll site here"
   echo "Either you didn't mount a volume, or you mounted it incorrectly."
