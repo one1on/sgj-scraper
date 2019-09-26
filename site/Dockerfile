@@ -27,7 +27,7 @@ FROM jekyll-base
 ENV JEKYLL_NEW false
 ENV JEKYLL_ENV development
 
-ENV BUNDLE_PATH /box
+ENV BUNDLE_PATH /bundlercache
 
 COPY docker-entrypoint.sh /usr/local/bin/
 
