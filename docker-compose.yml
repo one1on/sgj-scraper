@@ -8,14 +8,14 @@ services:
     env_file:
       - .env
     volumes:
-      - ./appphotos:/app/build/images
+      - ./build/images:/app/build/images
   viewer:
     build:
       context: ./site/
       dockerfile: Dockerfile
     volumes:
       - ./site:/site
-      - ./appphotos:/site/photos
+      - ./build/images:/site/photos
       - bundlercache-site:/bundlercache
     ports:
       - '8000:8000'
