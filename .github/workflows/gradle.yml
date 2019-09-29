@@ -10,7 +10,7 @@ jobs:
         with:
           java-version: 11.0.4
       - name: Build with Gradle
-          run: ./gradlew assemble
+        run: ./gradlew assemble
   test:
     needs: assemble
     runs-on: ubuntu-latest
