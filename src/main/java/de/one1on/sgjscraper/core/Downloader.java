@@ -19,7 +19,7 @@ public class Downloader {
     public static Logger logger = LoggerFactory.getLogger(Downloader.class);
     private final List<String> hashtags;
     private List<String> urls;
-    private Dotenv env = Dotenv.load();
+    private Dotenv env = Dotenv.Instance.configure().ignoreIfMissing().load();
     private File baseDir;
 
     public Downloader(List<String> hashtags, List<String> urls) {
