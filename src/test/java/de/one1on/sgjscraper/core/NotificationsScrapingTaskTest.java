@@ -34,7 +34,7 @@ class NotificationsScrapingTaskTest {
         j1.setId(1);
         j1.setImage("http://bla");
         Author a = new Author();
-        a.setGenderId(1);
+        a.setGenderId(Author.Gender.FEMALE);
         j1.setAuthor(a);
         n1.setHashtags(Lists.newArrayList("#a", "#b"));
         n1.setJodel(j1);
