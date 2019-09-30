@@ -3,6 +3,7 @@ _site
 .jekyll-metadata
 .cache
 .build
+.jekyll-cache
 
 npm-debug.log*
 .npm

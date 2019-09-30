@@ -25,6 +25,8 @@ markdown: kramdown
 theme: minima
 plugins:
   - jekyll-gallery-generator
+  - jekyll-feed
+  - jekyll-include-cache
 
 sass:
   load_paths:
@@ -50,6 +52,7 @@ exclude:
    - package-lock.json
    # foundation-sites/docs contain files with liquid templates that result in pages
    - /node_modules/foundation-sites/docs
+   - .jekyll-cache
 keep_files: [node_modules]
 
 gallery:
