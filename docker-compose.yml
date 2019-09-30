@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  sgjscraper:
+  scraper:
     build:
       context: .
       dockerfile: docker/Dockerfile
@@ -13,6 +13,7 @@ services:
     build:
       context: ./site/
       dockerfile: Dockerfile
+    command: bundle exec jekyll serve --incremental --watch --force_polling -H 0.0.0.0 -P 8000
     volumes:
       - ./site:/site
       - ./build/images:/site/photos
