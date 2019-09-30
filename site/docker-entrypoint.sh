@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-npm i
+cp package.json _site
+npm i --prefix _site
 
 if [ ! -f Gemfile ]; then
   echo "NOTE: hmm, I don't see a Gemfile so I don't think there's a jekyll site here"
