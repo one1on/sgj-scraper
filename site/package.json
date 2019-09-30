@@ -18,6 +18,7 @@
     "lg-pager": "^1.0.2",
     "lg-thumbnail": "^1.1.0",
     "lg-zoom": "^1.1.0",
-    "lightgallery": "^1.6.12"
+    "lightgallery": "^1.6.12",
+    "what-input": "^5.2.4"
   }
 }
