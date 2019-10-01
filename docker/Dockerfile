@@ -6,5 +6,5 @@ RUN bash -c 'if [ -d /app/docs ]; then rm -R /app/docs; fi'
 RUN bash -c 'if [ -d /app/site ]; then rm -R /app/site; fi'
 RUN bash -c 'if [ -d /app/build ]; then rm -R /app/build; fi'
 RUN bash -c 'if [ -d /app/.env ]; then rm -R /app/.env; fi'
-RUN gradle assemble --no-daemon
+RUN gradle build --no-daemon
 CMD [ "gradle", "run", "--no-daemon"]
