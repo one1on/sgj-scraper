@@ -2,6 +2,9 @@
 ---
 @import "{{ site.theme }}";
 
+$on-palm: 600px;
+$on-laptop: 1200px;
+
 @import 'foundation-sites/scss/foundation';
 @include foundation-xy-grid-classes;
 
