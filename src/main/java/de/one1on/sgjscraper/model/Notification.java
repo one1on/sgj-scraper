@@ -3,6 +3,7 @@ package de.one1on.sgjscraper.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
+import org.joda.time.DateTime;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class Notification {
     private int value;
     @SerializedName("timestamp")
     @Expose
-    private int timestamp;
+    private DateTime timestamp;
     @SerializedName("hashtags")
     @Expose
     private List<String> hashtags = null;

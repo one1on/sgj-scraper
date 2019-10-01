@@ -1,0 +1,10 @@
+---
+layout: page
+title:  "Notifications"
+date:   $date.get("yyyy-MM-dd'T'HH:mm'Z'")
+categories: meta log
+permalink: /notifications/
+---
+#foreach($notification in $notifications)
+- $notification.getTimestamp() $notification.getHashtags()
+#end

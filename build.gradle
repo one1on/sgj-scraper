@@ -18,6 +18,8 @@ repositories {
 }
 
 dependencies {
+    compile 'org.apache.velocity:velocity:1.7'
+    compile 'org.apache.velocity:velocity-tools:2.0'
     compile 'joda-time:joda-time:2.10.3'
     compile 'io.github.cdimascio:java-dotenv:5.1.1'
     compileOnly 'org.projectlombok:lombok:1.18.10'
