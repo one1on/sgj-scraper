@@ -1,0 +1,10 @@
+.git/
+.gradle/
+docs/
+site/
+build/
+logs/
+docs/
+site/
+.env
+**/node_modules
