@@ -52,9 +52,9 @@ public class SecretGermanJodelAPIImpl implements SecretGermanJodelAPI {
     }
 
     @Override
-    public List<Jodel> getPosts(long sort, long amout_loaded) {
+    public List<Jodel> getPosts(PostsSort sort, long amout_loaded) {
         try {
-            final HttpResponse response = client.execute(API.getPosts(sort, amout_loaded));
+            final HttpResponse response = client.execute(API.getPosts(sort.ordinal(), amout_loaded));
             String json = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
             List<Jodel> list = Stream.of(new JsonParser().parse(json).getAsJsonObject()
                                                               .getAsJsonObject("results")

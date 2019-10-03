@@ -1,6 +1,7 @@
 package de.one1on.sgjscraper.core;
 
 
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import de.one1on.sgjscraper.api.SecretGermanJodelAPI;
 import de.one1on.sgjscraper.model.Comment;
@@ -13,6 +14,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static de.one1on.sgjscraper.api.SecretGermanJodelAPI.PostsSort.*;
+
 public class ScrapingTask extends BaseScrapingTask {
 
     public ScrapingTask(SecretGermanJodelAPI api) {
@@ -21,7 +24,10 @@ public class ScrapingTask extends BaseScrapingTask {
 
     @Override
     public void scrape() {
-        List<Jodel> jodelList = api.getPosts(0, 0);
+        List<Jodel> jodelList = Lists.newArrayList(Iterables.concat(
+                        api.getPosts(NEWEST, 0),
+                        api.getPosts(LOUDEST, 0))
+        );
 
         final List<Jodel> filteredJodels = filter(jodelList, isFemale, hasMinVotes, hasImage);
 

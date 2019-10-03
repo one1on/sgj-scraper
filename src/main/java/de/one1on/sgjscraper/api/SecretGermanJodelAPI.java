@@ -7,7 +7,10 @@ import de.one1on.sgjscraper.model.Notification;
 import java.util.List;
 
 public interface SecretGermanJodelAPI {
-    List<Jodel> getPosts(long sort, long amout_loaded);
+    enum PostsSort {
+        NEWEST, DISCUSSED, LOUDEST
+    }
+    List<Jodel> getPosts(PostsSort sort, long amout_loaded);
     List<Jodel> getPost(long id);
     List<Comment> getPostComments(long id);
     List<Notification> getNotifications();
