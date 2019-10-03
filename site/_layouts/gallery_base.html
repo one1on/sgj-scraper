@@ -27,6 +27,15 @@ layout: full-width
             autoplay: true,
             pause: 4200
         });
+
+        $('a').each( function() {
+            let href = $(this).attr('href');
+            if(/hashtag_+./.test(href)) {
+                let text = $(this).text().replace(/Hashtag./,'#');
+                $(this).text(text);
+            }
+        });
+
     })
 </script>
 
