@@ -29,6 +29,16 @@ class HashTagExtractorTest {
         assertThat(extractFrom("<a>#wow</a><a>#how</a>")).isEqualTo("wow");
     }
 
+    @Test
+    void extractUmlaut() {
+        assertThat(extractFrom("<a>#läuft</a>")).isEqualTo("laeuft");
+    }
+
+    @Test
+    void extractUmlaut2() {
+        assertThat(extractFrom("<a>#soße</a>")).isEqualTo("sosse");
+    }
+
     private String extractFrom(String ... s) {
         List<String> lines = Lists.newArrayList(s);
         return HashTagExtractor.extract(lines);
