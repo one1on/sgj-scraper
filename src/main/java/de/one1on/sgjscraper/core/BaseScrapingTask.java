@@ -23,6 +23,7 @@ import static de.one1on.sgjscraper.util.CompletableFutureCollector.collectResult
 public abstract class BaseScrapingTask implements Runnable, ScrapingTaskLifecycle {
     public static Logger logger = LoggerFactory.getLogger(Main.class);
 
+    protected static Predicate<Jodel> hasMinVotes = LoggingPredicate.decorate((jodel -> jodel.getVotes().getTotal() > 25));
     protected static Predicate<Jodel> isFemale = LoggingPredicate.decorate(jodel -> jodel.getAuthor().isFemale());
     protected static Predicate<Comment> isFemaleComment = LoggingPredicate.decorate(comment -> comment.getAuthor().isFemale());
     protected static Predicate<Jodel> hasImage = LoggingPredicate.decorate(jodel -> !jodel.getImage().isEmpty());

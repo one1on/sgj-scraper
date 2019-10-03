@@ -23,7 +23,7 @@ public class ScrapingTask extends BaseScrapingTask {
     public void scrape() {
         List<Jodel> jodelList = api.getPosts(0, 0);
 
-        final List<Jodel> filteredJodels = filter(jodelList, isFemale, hasImage);
+        final List<Jodel> filteredJodels = filter(jodelList, isFemale, hasMinVotes, hasImage);
 
         for (Jodel jodel : filteredJodels) {
             final List<Comment> comments = api.getPostComments(jodel.getId());
