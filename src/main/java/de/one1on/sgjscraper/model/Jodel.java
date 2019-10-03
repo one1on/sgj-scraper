@@ -4,11 +4,13 @@ package de.one1on.sgjscraper.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
+import lombok.ToString;
 import org.joda.time.DateTime;
 
 import java.util.List;
 
 @Data
+@ToString(of = {"id", "timestamp", "votes"})
 public class Jodel {
 
     @SerializedName("id")

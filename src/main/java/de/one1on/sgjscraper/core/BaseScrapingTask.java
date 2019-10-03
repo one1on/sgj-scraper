@@ -3,6 +3,7 @@ package de.one1on.sgjscraper.core;
 
 import de.one1on.sgjscraper.Main;
 import de.one1on.sgjscraper.api.SecretGermanJodelAPI;
+import de.one1on.sgjscraper.filter.LoggingPredicate;
 import de.one1on.sgjscraper.model.Comment;
 import de.one1on.sgjscraper.model.Jodel;
 import lombok.Getter;
@@ -21,10 +22,11 @@ import static de.one1on.sgjscraper.util.CompletableFutureCollector.collectResult
 
 public abstract class BaseScrapingTask implements Runnable, ScrapingTaskLifecycle {
     public static Logger logger = LoggerFactory.getLogger(Main.class);
-    protected static Predicate<Jodel> isFemale = (jodel -> jodel.getAuthor().isFemale());
-    protected static Predicate<Comment> isFemaleComment = (comment -> comment.getAuthor().isFemale());
-    protected static Predicate<Jodel> hasImage = (jodel -> !jodel.getImage().isEmpty());
-    protected static Predicate<Comment> hasImageComment = (comment -> !comment.getImage().isEmpty());
+
+    protected static Predicate<Jodel> isFemale = LoggingPredicate.decorate(jodel -> jodel.getAuthor().isFemale());
+    protected static Predicate<Comment> isFemaleComment = LoggingPredicate.decorate(comment -> comment.getAuthor().isFemale());
+    protected static Predicate<Jodel> hasImage = LoggingPredicate.decorate(jodel -> !jodel.getImage().isEmpty());
+    protected static Predicate<Comment> hasImageComment = LoggingPredicate.decorate(comment -> !comment.getImage().isEmpty());
     private static Function<Jodel, String> extractHashTag = jodel -> HashTagExtractor.extract(jodel.getResolvedComments().stream().map(Comment::getText).collect(Collectors.toList()));
     @Getter
     private final List<CompletableFuture<File>> downloads = new ArrayList<>();
