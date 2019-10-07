@@ -44,7 +44,7 @@ public class NotificationsScrapingTask extends BaseScrapingTask {
                 final List<Comment> comments = api.getPostComments(jodel.getId());
                 notification.getJodel().setResolvedComments(comments);
 
-                List<String> imageUrls = Stream.concat(Stream.of(jodel.getImage()), filterComments(notification.getJodel().getResolvedComments(), isFemaleComment, hasImageComment).stream().map(Comment::getImage)).collect(Collectors.toList());
+                List<String> imageUrls = Stream.concat(Stream.of(jodel.getImage()), filter(notification.getJodel().getResolvedComments(), isFemaleComment, hasImageComment).stream().map(Comment::getImage)).collect(Collectors.toList());
                 final List<CompletableFuture<File>> downloads = new Downloader(notification.getHashtags(), imageUrls).download();
                 addDownloads(downloads);
             }

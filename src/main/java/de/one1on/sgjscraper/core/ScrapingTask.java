@@ -40,7 +40,7 @@ public class ScrapingTask extends BaseScrapingTask {
 
         for (Map.Entry<String, List<Jodel>> entry : filterAndGrouped.entrySet()) {
             List<String> imageUrls = entry.getValue().stream()
-                                          .flatMap(s -> Stream.concat(Stream.of(s.getImage()), filterComments(s.getResolvedComments()).stream().skip(1).map(Comment::getImage)))
+                                          .flatMap(s -> Stream.concat(Stream.of(s.getImage()), filter(s.getResolvedComments()).stream().skip(1).map(Comment::getImage)))
                                           .collect(Collectors.toList());
             final List<CompletableFuture<File>> downloads = new Downloader(Lists.newArrayList(entry.getKey()), imageUrls).download();
             addDownloads(downloads);

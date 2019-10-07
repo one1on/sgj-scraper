@@ -43,9 +43,9 @@ public abstract class BaseScrapingTask implements Runnable, ScrapingTaskLifecycl
     }
 
     @SafeVarargs
-    protected static List<Jodel> filter(List<Jodel> list, Predicate<Jodel>... predicates) {
+    protected static <T> List<T> filter(List<? extends T> list, Predicate<? super T>... predicates) {
         return list.stream()
-                   .filter(Arrays.stream(predicates).reduce($ -> true, Predicate::and))
+                   .filter(t -> Arrays.stream(predicates).allMatch(p -> p.test(t)))
                    .collect(Collectors.toList());
     }
 
@@ -55,11 +55,6 @@ public abstract class BaseScrapingTask implements Runnable, ScrapingTaskLifecycl
                                        .collect(Collectors.groupingBy(extractHashTag));
     }
 
-    @SafeVarargs
-    protected static List<Comment> filterComments(List<Comment> list, Predicate<Comment>... predicates) {
-        return list.stream().filter(Arrays.stream(predicates).reduce($ -> true, Predicate::and))
-                        .collect(Collectors.toList());
-    }
 
     @Override
     public final void run() {
