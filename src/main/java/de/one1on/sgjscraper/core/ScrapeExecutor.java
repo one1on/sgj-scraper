@@ -31,6 +31,7 @@ public class ScrapeExecutor {
     }
 
     private void doExecute() {
+        final long before = System.currentTimeMillis();
         try {
             tasks.forEach(ScrapingTaskLifecycle::pre);
             tasks.forEach(ScrapingTaskLifecycle::scrape);
@@ -39,5 +40,6 @@ public class ScrapeExecutor {
         } catch (RuntimeException e) {
             logger.error("Failure in execution", e);
         }
+        logger.info("Done scraping in {}s", TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - before));
     }
 }
