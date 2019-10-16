@@ -47,7 +47,6 @@ public class Downloader {
         if(!this.baseDir.canWrite()) {
             throw new IllegalStateException("Can not write to directory " + this.baseDir.getAbsolutePath());
         }
-        System.out.println();
     }
 
     public List<CompletableFuture<File>> download() {
@@ -73,7 +72,11 @@ public class Downloader {
      public File downloadFileA(String imageUrl) throws IOException, URISyntaxException {
         URL url = new URL(imageUrl);
         String fileName = FilenameUtils.getName(url.toURI().getPath());
-        String destName = "figure-" + fileName.hashCode() + ".jpg";
+        String destName = "figure-" + fileName.substring(0, 14) + ".jpg";
+
+        if(!fileName.startsWith("20")) {
+            throw new IllegalStateException("Something seems to be wrong with the image to download because it doesn't start with 20xx");
+        }
 
          File file = null;
 
