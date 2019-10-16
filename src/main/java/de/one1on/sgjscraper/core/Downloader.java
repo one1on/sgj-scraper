@@ -91,6 +91,12 @@ public class Downloader {
              } else {
                  logger.debug("Already downloaded: {}", file.getName());
              }
+
+             final long bytes = FileUtils.sizeOf(file);
+             if(bytes < 40_000) {
+                 FileUtils.moveToDirectory(file, new File(baseDir, "shittyImages"), true);
+                 logger.info("Moving {} because it's too small to be good.", file.getName());
+             }
          }
 
         return file;
