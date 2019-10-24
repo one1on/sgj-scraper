@@ -93,8 +93,9 @@ public class Downloader {
              }
 
              final long bytes = FileUtils.sizeOf(file);
-             if(bytes < 40_000) {
-                 FileUtils.moveToDirectory(file, new File(baseDir, "shittyImages"), true);
+             final File shittyImagesDir = new File(baseDir, "shittyImagesDir");
+             if(bytes < 40_000 && shittyImagesDir.exists() && !FileUtils.directoryContains(shittyImagesDir, file) ) {
+                 FileUtils.moveToDirectory(file, shittyImagesDir, true);
                  logger.info("Moving {} because it's too small to be good.", file.getName());
              }
          }
